@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>📚 Check-in Rápido – Formação de Tutores EaD</title>
+  <style>
+    :root{
+      --bg:#f6f6fb;
+      --primary:#673ab7; /* vibe Google Forms */
+      --primary-weak:#ede7f6;
+      --text:#202124;
+      --muted:#5f6368;
+      --card:#ffffff;
+      --ok:#1a73e8;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+    }
+    header{
+      background:linear-gradient(135deg,var(--primary) 0%, #7e57c2 100%);
+      color:#fff; padding:56px 24px 72px; text-align:center;
+    }
+    header h1{ margin:0; font-size:clamp(22px,3.6vw,34px); font-weight:800; letter-spacing:.2px }
+    header p{ margin:8px auto 0; max-width:760px; opacity:.95 }
+
+    .container{ max-width:760px; margin:-40px auto 64px; padding:0 16px }
+    .card{
+      background:var(--card); border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.08);
+      padding:20px; margin-bottom:16px; border:1px solid #eee
+    }
+    .card.header{ padding:22px 24px }
+    .card .subtitle{ color:var(--muted); font-size:14px }
+
+    form .q{ padding:18px 10px 6px; border-bottom:1px solid #eee }
+    form .q:last-child{ border-bottom:none }
+    .q h3{ margin:0 0 10px; font-size:16px; font-weight:700 }
+    .q .help{ color:var(--muted); font-size:13px; margin:0 0 8px }
+    .options{ display:grid; gap:8px; padding:2px 0 14px }
+    label.opt{ display:flex; gap:10px; align-items:flex-start; cursor:pointer }
+    label.opt input{ margin-top:3px }
+
+    select, button, input[type="text"], input[type="email"]{
+      width:100%; padding:10px 12px; border:1px solid #dadce0; border-radius:10px; font:inherit;
+      background:#fff
+    }
+    select:focus, input:focus, button:focus{ outline:3px solid var(--primary-weak); border-color:var(--primary) }
+
+    .required::after{ content:" *"; color:#d93025 }
+
+    .actions{ display:flex; gap:12px; align-items:center; padding:16px 8px 6px }
+    button.submit{
+      background:var(--ok); color:#fff; border:none; padding:12px 18px; border-radius:999px; font-weight:700; cursor:pointer
+    }
+    button.submit:hover{ filter:brightness(1.05) }
+    .note{ color:var(--muted); font-size:13px }
+
+    .thankyou{ display:none; text-align:center; padding:28px }
+    .thankyou h2{ margin:0 0 6px }
+    .pill{ display:inline-block; background:var(--primary-weak); color:var(--primary); padding:6px 10px; border-radius:999px; font-size:13px }
+
+    /* Mobile tweaks */
+    @media (max-width:520px){
+      .card{ border-radius:14px }
+      header{ padding:40px 18px 66px }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 Check-in Rápido – Formação de Tutores EaD</h1>
+    <p>Ajude-nos a retomar o ritmo! Responda 6 perguntas rápidas para ajustarmos o apoio e o cronograma.</p>
+  </header>
+
+  <main class="container">
+    <section class="card header" aria-label="Informações">
+      <div class="subtitle">Duração: ~1 minuto • Respostas objetivas</div>
+    </section>
+
+    <form id="form" class="card" aria-labelledby="titulo-form">
+      <div class="q">
+        <h3 id="q1" class="required">Você já acessou o AVA (Ambiente Virtual de Aprendizagem) nesta semana?</h3>
+        <div class="options" role="radiogroup" aria-labelledby="q1">
+          <label class="opt"><input type="radio" name="ava_semana" value="Sim" required>Sim</label>
+          <label class="opt"><input type="radio" name="ava_semana" value="Não">Não</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <h3 id="q2" class="required">Está conseguindo acompanhar o cronograma do curso?</h3>
+        <div class="options" role="radiogroup" aria-labelledby="q2">
+          <label class="opt"><input type="radio" name="cronograma" value="Sim, tranquilo" required>Sim, tranquilo</label>
+          <label class="opt"><input type="radio" name="cronograma" value="Mais ou menos">Mais ou menos</label>
+          <label class="opt"><input type="radio" name="cronograma" value="Não">Não</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <h3 id="q3" class="required">Qual recurso do curso você mais usa?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="recurso" value="Fóruns" required>Fóruns</label>
+          <label class="opt"><input type="radio" name="recurso" value="Vídeos">Vídeos</label>
+          <label class="opt"><input type="radio" name="recurso" value="Material em PDF">Material em PDF</label>
+          <label class="opt"><input type="radio" name="recurso" value="Atividades avaliativas">Atividades avaliativas</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <h3 id="q4" class="required">Você já participou de pelo menos 1 interação no fórum?</h3>
+        <div class="options" role="radiogroup" aria-labelledby="q4">
+          <label class="opt"><input type="radio" name="forum" value="Sim" required>Sim</label>
+          <label class="opt"><input type="radio" name="forum" value="Não">Não</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <h3 id="q5" class="required">Como está seu nível de motivação no curso?</h3>
+        <div class="options" role="radiogroup" aria-labelledby="q5">
+          <label class="opt"><input type="radio" name="motivacao" value="Muito motivado(a)" required> Muito motivado(a)</label>
+          <label class="opt"><input type="radio" name="motivacao" value="Regular"> Regular</label>
+          <label class="opt"><input type="radio" name="motivacao" value="Pouco motivado(a)"> Pouco motivado(a)</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <h3 id="q6" class="required">Qual melhor horário para estudar?</h3>
+        <div>
+          <select name="horario" required aria-labelledby="q6">
+            <option value="" selected disabled>Selecione uma opção</option>
+            <option>Manhã</option>
+            <option>Tarde</option>
+            <option>Noite</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="submit" type="submit">Enviar</button>
+        <span class="note">Após enviar, você verá a confirmação. (Modelo sem servidor)</span>
+      </div>
+    </form>
+
+    <section id="thanks" class="card thankyou" aria-live="polite">
+      <span class="pill">Resposta registrada</span>
+      <h2>Obrigada(o)! 🎉</h2>
+      <p>Sua participação ajuda a melhorar a experiência no curso.</p>
+      <details>
+        <summary>Ver respostas enviadas (somente nesta tela)</summary>
+        <pre id="preview" style="text-align:left; white-space:pre-wrap"></pre>
+      </details>
+    </section>
+
+    <section class="card" aria-label="Instruções de incorporação">
+      <h3>Como usar no Padlet</h3>
+      <ol>
+        <li>Hospede este arquivo HTML em um serviço gratuito (por ex.: Google Drive web compartilhado, GitHub Pages, Netlify ou o site da sua instituição).</li>
+        <li>No Padlet, escolha <strong>Adicionar</strong> → <strong>Link</strong> e cole a URL onde o arquivo está hospedado.</li>
+        <li>Opcional: use um serviço de formulários (Formspree, Getform, Google Apps Script) para salvar respostas em planilha.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script>
+    // Este script simula o envio (sem backend) e mostra tela de obrigado.
+    const form = document.getElementById('form');
+    const thanks = document.getElementById('thanks');
+    const preview = document.getElementById('preview');
+
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      const data = new FormData(form);
+      const obj = Object.fromEntries(data.entries());
+      // Exibe prévia
+      preview.textContent = JSON.stringify(obj, null, 2);
+      // Alterna visibilidade
+      form.style.display = 'none';
+      thanks.style.display = 'block';
+      // Dica: para enviar a um endpoint, remova ev.preventDefault() e
+      // defina form.action = 'SUA_URL'; form.method = 'POST';
+      // ou use fetch() para integrar a Google Sheets/Apps Script.
+    });
+  </script>
+</body>
+</html>
